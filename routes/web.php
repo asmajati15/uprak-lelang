@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('auction.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [LotController::class, 'index'])->name('lot.dashboard');
+    Route::get('/dashboard/{$id}', [LotController::class, 'show'])->name('dashboard.show');
+    // Route::resource('dashboard', LotController::class);
 });
